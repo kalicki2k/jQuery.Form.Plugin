@@ -84,7 +84,7 @@
 
                     switch (typeof (data)) {
                         case 'object':
-                            _createOptions(selector, data, keys)
+                            _createOptions(selector, data, keys);
                             break;
                         default:
                             form.fillInput(selector, data);
