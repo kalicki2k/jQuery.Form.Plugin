@@ -14,18 +14,18 @@
 
         var form = {
             clear: function () {
-                $(self).find('input, textarea')
+                $(me).find('input, textarea')
                     .not('input:checkbox, input:radio, input:submit')
                     .each(function (index, input) {
                         $(input).val(null);
                     });
 
-                $(self).find('input:checkbox, input:radio')
+                $(me).find('input:checkbox, input:radio')
                     .each(function (index, input) {
                         $(input).prop('checked', $(input).is('[checked]'));
                     });
 
-                $(self).find('select')
+                $(me).find('select')
                     .each(function (index, select) {
                         $('option', select).each(function (index, option) {
                             $(option).prop('selected', $(option).is('[selected]'));
@@ -97,7 +97,7 @@
                     if ('selected' === value.selected || true === value.selected) {
                         option.attr('selected', 'selected');
                     }
-                    option.appendTo(element, self);
+                    option.appendTo(element, me);
                 });
 
                 return this;
