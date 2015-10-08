@@ -84,9 +84,8 @@
             fillSelect: function (selector, data, keys) {
                 var element = $(selector, me);
 
-                //@todo expand data object...
                 if ('undefined' === typeof (keys)) {
-                    var keys = [].concat('value', 'title');
+                    keys = [].concat('value', 'title');
                 }
 
                 $.each(data, function (index, value) {
