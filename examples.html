@@ -45,9 +45,10 @@
 <script src="jquery.form.js"></script>
 <script>
     $(function () {
-        var form = $('[name="form-name-1"]').form();
+        var form1 = $('[name="form-name-1"]').form(),
+            form2 = $('[name="form-name-2"]').form();
 
-        form
+        form1
             .clear()
             .fill({
                 input1: 'input1',
@@ -68,7 +69,12 @@
                 console.log(data);
             });
 
-        $('[name="form-name-2"]').form().clear();
+        form2
+            .clear()
+            .fill({
+                input1: 'input1',
+                select1: 'Value One'
+            });
 
     });
 </script>
