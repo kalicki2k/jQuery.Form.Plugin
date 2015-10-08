@@ -1,0 +1,77 @@
+<!doctype html>
+<html class="no-js" lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>jQuery Form Plugin</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<main>
+    <form name="form-name-1" method="post" action="#">
+        <fieldset>
+            <legend>Formular One</legend>
+            <label>Input:
+                <input name="input1" type="text" value="value">
+            </label>
+            <label>Select:
+                <select name="select1"></select>
+            </label>
+            <label>Textarea:
+                <textarea name="textarea1"></textarea>
+            </label>
+        </fieldset>
+    </form>
+    <form name="form-name-2" method="post" action="#">
+        <fieldset>
+            <legend>Formular Two</legend>
+            <label>Input:
+                <input name="input1" type="text" value="value">
+            </label>
+            <label>Select:
+                <select name="select1">
+                    <option value="Value One">Option One</option>
+                    <option value="Value Two" selected="selected">Option Two</option>
+                    <option value="Value Three">Option Three</option>
+                </select>
+            </label>
+        </fieldset>
+    </form>
+</main>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="jquery.form.js"></script>
+<script>
+    $(function () {
+        var form = $('[name="form-name-1"]').form();
+
+        form
+            .clear()
+            .fill({
+                input1: 'input1',
+                select1: [
+                    {
+                        title: 'Title0',
+                        value: 'Value0'
+                    },
+                    {
+                        title: 'Title1',
+                        value: 'Value1',
+                        selected: true
+                    }
+                ],
+                textarea1: 'textarea1'
+            })
+            .read(function (data) {
+                console.log(data);
+            });
+
+        $('[name="form-name-2"]').form().clear();
+
+    });
+</script>
+
+</body>
+</html>
