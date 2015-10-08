@@ -54,6 +54,10 @@
                     $.each(data, function (name, value) {
                         var element = $('[name="' + name + '"]', me);
 
+                        if ('undefined' === typeof (element[0])) {
+                            return;
+                        }
+
                         switch (element[0].nodeName.toLowerCase()) {
                             case 'input':
                             case 'textarea':
