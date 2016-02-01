@@ -30,6 +30,9 @@
             <label>Textarea:
                 <textarea name="textarea1">Textarea default value.</textarea>
             </label>
+            <label>Checkbox:
+                <input name="checkobox1" type="checkbox"> Checkbox 1
+            </label>
         </fieldset>
     </form>
     <form name="form-name-2" method="post" action="#">
@@ -57,34 +60,34 @@
             form2 = $('[name="form-name-2"]').form();
 
         form1
-            .clear(['input2'])
-            .fill({
-                undefined1: 'undefined element',
-                input1: 'input1',
-                select1: [
-                    {
-                        title: 'Title0',
-                        value: 'Value0'
-                    },
-                    {
-                        title: 'Title1',
-                        value: 'Value1',
-                        selected: true
-                    }
-                ],
-                textarea1: 'textarea1'
-            })
-            .read(function (data) {
-                console.log(data);
-            });
+                .clear(['input2'])
+                .fill({
+                    undefined1: 'undefined element',
+                    input1: 'input1',
+                    select1: [
+                        {
+                            title: 'Title0',
+                            value: 'Value0'
+                        },
+                        {
+                            title: 'Title1',
+                            value: 'Value1',
+                            selected: true
+                        }
+                    ],
+                    textarea1: 'textarea1'
+                })
+                .read(function (data) {
+                    console.log(data);
+                });
 
         form2
-            .clear()
-            .fill({
-                input1: 'input1',
-                select1: 'Value One'
-            });
-
+                .clear()
+                .fill({
+                    input1: 'input1',
+                    select1: 'Value One'
+                })
+                .disable();
     });
 </script>
 

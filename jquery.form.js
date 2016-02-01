@@ -58,6 +58,18 @@
 
                     return this;
                 },
+                disable: function() {
+                    $(me).find('input, select, textarea').each(function (index, element) {
+                        element.disabled = true;
+                    });
+                    return this;
+                },
+                enable: function() {
+                    $(me).find('input, select, textarea').each(function (index, element) {
+                        element.disabled = false;
+                    });
+                    return this;
+                },
                 fill: function (data) {
                     $.each(data, function (name, value) {
                         var element = $('[name="' + name + '"]', me);
