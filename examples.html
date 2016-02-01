@@ -14,13 +14,19 @@
         <fieldset>
             <legend>Formular One</legend>
             <label>Input:
-                <input name="input1" type="text" value="value">
+                <input name="input1" type="text" value="Text input default value">
+            </label>
+            <label>Input:
+                <input name="input2" type="text" value="Text input default value">
+            </label>
+            <label>Input:
+                <input name="input3" type="text" value="Text input default value">
             </label>
             <label>Select:
                 <select name="select1"></select>
             </label>
             <label>Textarea:
-                <textarea name="textarea1"></textarea>
+                <textarea name="textarea1">Textarea default value.</textarea>
             </label>
         </fieldset>
     </form>
@@ -49,7 +55,7 @@
             form2 = $('[name="form-name-2"]').form();
 
         form1
-            .clear()
+            .clear(['input2'])
             .fill({
                 undefined1: 'undefined element',
                 input1: 'input1',

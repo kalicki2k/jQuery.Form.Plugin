@@ -12,23 +12,31 @@
     $.fn.form = function () {
         var me = this,
             form = {
-                clear: function () {
+                clear: function (exclude) {
+                    var exclude = exclude || [];
+
                     $(me).find('input, textarea')
                         .not('input:checkbox, input:radio, input:submit')
                         .each(function (index, input) {
-                            $(input).val(null);
+                            if (false === _isExcluded($(input), exclude)) {
+                                $(input).val(null);
+                            }
                         });
 
                     $(me).find('input:checkbox, input:radio')
                         .each(function (index, input) {
-                            $(input).prop('checked', $(input).is('[checked]'));
+                            if (false === _isExcluded($(input), exclude)) {
+                                $(input).prop('checked', $(input).is('[checked]'));
+                            }
                         });
 
                     $(me).find('select')
                         .each(function (index, select) {
-                            $('option', select).each(function (index, option) {
-                                $(option).prop('selected', $(option).is('[selected]'));
-                            });
+                            if (false === _isExcluded($(select), exclude)) {
+                                $('option', select).each(function (index, option) {
+                                    $(option).prop('selected', $(option).is('[selected]'));
+                                });
+                            }
                         });
 
                     return this;
@@ -151,6 +159,17 @@
                 }
                 option.appendTo(element, me);
             });
+        }
+
+        function _isExcluded(element, exclusionList) {
+            var result = false;
+            $.each(exclusionList, function (index, exclusionIdentifier) {
+                if (element[0].name === exclusionIdentifier) {
+                    result = true;
+                    return false;
+                }
+            });
+            return result;
         }
 
         return form;
