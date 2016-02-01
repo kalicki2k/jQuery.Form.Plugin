@@ -12,8 +12,8 @@
     $.fn.form = function () {
         var me = this,
             form = {
-                clear: function (exclude) {
-                    var exclude = exclude || [];
+                clear: function (excludeArray) {
+                    var exclude = excludeArray || [];
 
                     $(me).find('input, textarea')
                         .not('input:checkbox, input:radio, input:submit')
