@@ -143,7 +143,8 @@
             };
 
         function _createOptions(selector, data, keys) {
-            var element = $(selector, me);
+            var element = $(selector, me),
+                options = $('option', element);
 
             if ('undefined' === typeof (keys)) {
                 keys = [].concat('value', 'title');
@@ -157,8 +158,24 @@
                 if ('selected' === value.selected || true === value.selected) {
                     option.attr('selected', 'selected');
                 }
-                option.appendTo(element, me);
+                if (!_existOptions(options, value, keys)) {
+                    option.appendTo(element, me);
+                }
             });
+        }
+
+        function _existOptions(options, data, keys) {
+            var result = false;
+            if (0 === options.length) {
+                return result;
+            }
+            $.each(options, function (index, option) {
+                if (data[keys[0]] == option.value && data[keys[1]] == option.text) {
+                    result = true;
+                    return false;
+                }
+            });
+            return result;
         }
 
         function _isExcluded(element, exclusionList) {
