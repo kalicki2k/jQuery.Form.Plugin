@@ -18,23 +18,23 @@
                     $(me).find('input, textarea')
                         .not('input:checkbox, input:radio, input:submit')
                         .each(function (index, input) {
-                            if (false === _isExcluded($(input), exclude)) {
-                                $(input).val(null);
+                            if (false === _isExcluded(input.name, exclude)) {
+                                input.defaultValue = '';
                             }
                         });
 
                     $(me).find('input:checkbox, input:radio')
                         .each(function (index, input) {
-                            if (false === _isExcluded($(input), exclude)) {
-                                $(input).prop('checked', $(input).is('[checked]'));
+                            if (false === _isExcluded(input.name, exclude)) {
+                                input.checked = (input.defaultChecked === true) ? true : false;
                             }
                         });
 
                     $(me).find('select')
                         .each(function (index, select) {
-                            if (false === _isExcluded($(select), exclude)) {
+                            if (false === _isExcluded(select.name, exclude)) {
                                 $('option', select).each(function (index, option) {
-                                    $(option).prop('selected', $(option).is('[selected]'));
+                                    option.selected = (option.defaultSelected === true) ? true : false;
                                 });
                             }
                         });
@@ -190,10 +190,10 @@
             return result;
         }
 
-        function _isExcluded(element, exclusionList) {
+        function _isExcluded(elementName, exclusionList) {
             var result = false;
             $.each(exclusionList, function (index, exclusionIdentifier) {
-                if (element[0].name === exclusionIdentifier) {
+                if (elementName === exclusionIdentifier) {
                     result = true;
                     return false;
                 }
