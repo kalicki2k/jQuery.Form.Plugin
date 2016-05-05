@@ -6,7 +6,7 @@
  * @date        $Date:$
  */
 
-(function (windows, $, undefined) {
+(function ($, undefined) {
     'use strict';
 
     $.fn.form = function () {
@@ -19,14 +19,14 @@
                         .not('input:checkbox, input:radio, input:submit')
                         .each(function (index, input) {
                             if (false === _isExcluded(input.name, exclude)) {
-                                input.defaultValue = '';
+                                $(input).val(null);
                             }
                         });
 
                     $(me).find('input:checkbox, input:radio')
                         .each(function (index, input) {
                             if (false === _isExcluded(input.name, exclude)) {
-                                input.checked = (input.defaultChecked === true) ? true : false;
+                                $(input).prop('checked', $(input).is('[checked]'));
                             }
                         });
 
@@ -34,7 +34,7 @@
                         .each(function (index, select) {
                             if (false === _isExcluded(select.name, exclude)) {
                                 $('option', select).each(function (index, option) {
-                                    option.selected = (option.defaultSelected === true) ? true : false;
+                                    $(option).prop('selected', $(option).is('[selected]'));
                                 });
                             }
                         });
@@ -58,13 +58,13 @@
 
                     return this;
                 },
-                disable: function() {
+                disable: function () {
                     $(me).find('input, select, textarea').each(function (index, element) {
                         element.disabled = true;
                     });
                     return this;
                 },
-                enable: function() {
+                enable: function () {
                     $(me).find('input, select, textarea').each(function (index, element) {
                         element.disabled = false;
                     });
@@ -190,18 +190,11 @@
             return result;
         }
 
-        function _isExcluded(elementName, exclusionList) {
-            var result = false;
-            $.each(exclusionList, function (index, exclusionIdentifier) {
-                if (elementName === exclusionIdentifier) {
-                    result = true;
-                    return false;
-                }
-            });
-            return result;
+        function _isExcluded(elementName, excludeArray) {
+            return ($.inArray(elementName, excludeArray) >= 0);
         }
 
         return form;
     };
 
-})(this, jQuery);
+})(jQuery);
